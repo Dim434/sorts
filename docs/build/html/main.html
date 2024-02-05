@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>main module &#8212; sorts  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-main">
+<span id="main-module"></span><h1>main module<a class="headerlink" href="#module-main" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="main.Flight">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">Flight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#Flight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.Flight" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.bubble_sort">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">bubble_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flights</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#bubble_sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.bubble_sort" title="Link to this definition">¶</a></dt>
+<dd><p>Simple buble sort
+:param flights: list of sortable objects
+:return: sorted list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.cocktail_sort">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">cocktail_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flights</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#cocktail_sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.cocktail_sort" title="Link to this definition">¶</a></dt>
+<dd><p>Cocktail sort for given list
+:param flights: list of sortable objects
+:return: sorted list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.load_flights_from_csv">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">load_flights_from_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#load_flights_from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.load_flights_from_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Loads flights from file_path
+:param file_path: path to load from csv
+:return: List of Flight objects initialized from dicts</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.main">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.parse_time">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">parse_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#parse_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.parse_time" title="Link to this definition">¶</a></dt>
+<dd><p>Parses time from “0000” format
+:param t: string to parse
+:return: parsed datetime object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.quick_sort">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">quick_sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flights</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#quick_sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.quick_sort" title="Link to this definition">¶</a></dt>
+<dd><p>Quick sorts given list
+:param flights: list of sortable objects
+:return: sorted object list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.show_time">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">show_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#show_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.show_time" title="Link to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Estimates time to process function</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> – function to use</p></li>
+<li><p><strong>arg</strong> – arg to process</p></li>
+<li><p><strong>name</strong> – name of function to show information</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value of estimated function and time to process it</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.write_csv">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">write_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#write_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.write_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Write csv file with Flights named “{Name}.csv
+:param name: Name of sort or file
+:param rows: Rows to write</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">sorts</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, ddif.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/main.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
