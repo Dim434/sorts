@@ -5,7 +5,10 @@ import random
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
+# Потемин Дмитрий Иванович СКБ 211
+# сортировки: пузырьком, шейкером, быстрой сортировкой
 class Flight:
     def __init__(self, dictionary):
         """
@@ -38,6 +41,20 @@ class Flight:
             return False
         return self.passengers > flight2.passengers
 
+    def __gt__(self, other):
+        return other < self
+
+    def __le__(self, other):
+        return self < other or self == other
+
+    def __ge__(self, other):
+        return self > other or self == other
+
+    def __eq__(self, other):
+        return (self.arrival_date == other.arrival_date and
+                self.arrival_time == other.arrival_time and
+                self.airline == other.airline and
+                self.passengers == other.passengers)
     def __repr__(self):
         """
         Representation of flight
@@ -174,7 +191,7 @@ def show_time(func, arg, name):
 
 def main():
     flights2 = load_flights_from_csv(os.path.abspath("src/flights.csv"))
-    sizes = [100, 500, 1000, 2000, 3000, 6000, 7000, 8000]
+    sizes = [100, 500, 1000, 2000, 3000, 6000, 7000, 8000, 100000, 200000]
     times_b = []
     times_c = []
     times_q = []
@@ -184,15 +201,18 @@ def main():
         sorted_flights_bubble, end_time_bubble = show_time(bubble_sort, flights.copy(), "Bubble")
         sorted_flights_cocktail, end_time_cocktail = show_time(cocktail_sort, flights.copy(), "Cocktail")
         sorted_flights_quick, end_time_quick = show_time(quick_sort, flights.copy(), "Quick")
-        times_b.append(end_time_bubble)
-        times_c.append(end_time_cocktail)
-        times_q.append(end_time_quick)
+        times_b.append(math.log(end_time_bubble))
+        times_c.append(math.log(end_time_cocktail))
+        times_q.append(math.log(end_time_quick))
         write_csv("sorts/Bubble_{}".format(i), sorted_flights_bubble)
         write_csv("sorts/Cocktail_{}".format(i), sorted_flights_cocktail)
         write_csv("sorts/Quick_{}".format(i), sorted_flights_quick)
     plt.plot(sizes, times_b, label="Bubble")
     plt.plot(sizes, times_c, label="Cocktail")
     plt.plot(sizes, times_q, label="Quick")
+    plt.xlabel("Length of list (number)")
+    plt.ylabel("Time taken (seconds)")
+    plt.legend(loc="upper left")
     plt.savefig("sorts.png")
 if __name__ == '__main__':
     main()
