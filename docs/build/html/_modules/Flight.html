@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight &#8212; sorts  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for Flight</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<div class="viewcode-block" id="Flight">
+<a class="viewcode-back" href="../Flight.html#Flight.Flight">[docs]</a>
+<span class="k">class</span> <span class="nc">Flight</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">arrival_time</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">arrival_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">airline</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">passengers</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">flight_number</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes object from dict</span>
+
+<span class="sd">        :param arrival_date: date of arrival</span>
+<span class="sd">        :param arrival_time: time of arrival</span>
+<span class="sd">        :param airline: airline</span>
+<span class="sd">        :param passengers: count passengers</span>
+<span class="sd">        :param flight_number: flight number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrival_time</span> <span class="o">=</span> <span class="n">arrival_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrival_date</span> <span class="o">=</span> <span class="n">arrival_date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">airline</span> <span class="o">=</span> <span class="n">airline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">=</span> <span class="n">passengers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight_number</span> <span class="o">=</span> <span class="n">flight_number</span>
+
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flight2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Custom comparator function</span>
+
+<span class="sd">        :param flight2: second comparable object</span>
+<span class="sd">        :return: bool -- True if self is less than flight2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrival_date</span> <span class="o">&lt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">arrival_date</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrival_date</span> <span class="o">&gt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">arrival_date</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrival_time</span> <span class="o">&lt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">arrival_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrival_time</span> <span class="o">&gt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">arrival_time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">airline</span> <span class="o">&lt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">airline</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">airline</span> <span class="o">&gt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">airline</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">&gt;</span> <span class="n">flight2</span><span class="o">.</span><span class="n">passengers</span>
+
+    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">other</span> <span class="o">&lt;</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">&lt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+
+    <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">&gt;</span> <span class="n">other</span> <span class="ow">or</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arrival_date</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">arrival_date</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">arrival_time</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">arrival_time</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">airline</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">airline</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">passengers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Representation of flight</span>
+
+<span class="sd">        :return: string of represented object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flight_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">airline</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrival_date</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">arrival_time</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="bubble_sort">
+<a class="viewcode-back" href="../Flight.html#Flight.bubble_sort">[docs]</a>
+<span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">flights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple buble sort</span>
+
+<span class="sd">    :param flights: list of sortable objects</span>
+<span class="sd">    :return: sorted list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">flights</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">flights</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]):</span>
+                <span class="n">flights</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">flights</span></div>
+
+
+
+<div class="viewcode-block" id="cocktail_sort">
+<a class="viewcode-back" href="../Flight.html#Flight.cocktail_sort">[docs]</a>
+<span class="k">def</span> <span class="nf">cocktail_sort</span><span class="p">(</span><span class="n">flights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cocktail sort for given list</span>
+
+<span class="sd">    :param flights: list of sortable objects</span>
+<span class="sd">    :return: sorted list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span>
+    <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">swapped</span><span class="p">:</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]):</span>
+                <span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">start</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]):</span>
+                <span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">flights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">flights</span></div>
+
+
+
+<div class="viewcode-block" id="quick_sort">
+<a class="viewcode-back" href="../Flight.html#Flight.quick_sort">[docs]</a>
+<span class="k">def</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">flights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quick sorts given list</span>
+
+<span class="sd">    :param flights: list of sortable objects</span>
+<span class="sd">    :return: sorted object list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">flights</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">flights</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flights</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">)]</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flights</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">pivot</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)]</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">flights</span> <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="n">middle</span> <span class="o">+</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="datetime_to_int">
+<a class="viewcode-back" href="../Flight.html#Flight.datetime_to_int">[docs]</a>
+<span class="k">def</span> <span class="nf">datetime_to_int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">%H%M%S&quot;</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="parse_time">
+<a class="viewcode-back" href="../Flight.html#Flight.parse_time">[docs]</a>
+<span class="k">def</span> <span class="nf">parse_time</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses time from &quot;0000&quot; format</span>
+
+<span class="sd">    :param t: string to parse</span>
+<span class="sd">    :return: parsed datetime object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">t</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># Дополняем строку до 4 символов, добавляя нули слева</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">datetime_to_int</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;%H%M&quot;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="load_flights_from_csv">
+<a class="viewcode-back" href="../Flight.html#Flight.load_flights_from_csv">[docs]</a>
+<span class="k">def</span> <span class="nf">load_flights_from_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads flights from file_path</span>
+
+<span class="sd">    :param file_path: path to load from csv</span>
+<span class="sd">    :return: List of Flight objects initialized from dicts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">flights1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+        <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">row</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;arr_time&quot;</span><span class="p">,</span> <span class="s2">&quot;carrier&quot;</span><span class="p">,</span> <span class="s2">&quot;flight&quot;</span><span class="p">]):</span>
+                <span class="k">continue</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">parse_time</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;arr_time&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">flight_data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;flight_number&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;flight&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;airline&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;carrier&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;arrival_date&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span>
+                        <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)),</span>
+                    <span class="s2">&quot;arrival_time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+                    <span class="s2">&quot;passengers&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
+                <span class="p">}</span>
+                <span class="n">flights1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">Flight</span><span class="p">(</span>
+                        <span class="n">arrival_date</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span>
+                            <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)),</span>
+                        <span class="n">arrival_time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+                        <span class="n">passengers</span><span class="o">=</span><span class="n">flight_data</span><span class="p">[</span><span class="s1">&#39;passengers&#39;</span><span class="p">],</span>
+                        <span class="n">airline</span><span class="o">=</span><span class="n">flight_data</span><span class="p">[</span><span class="s1">&#39;airline&#39;</span><span class="p">],</span>
+                        <span class="n">flight_number</span><span class="o">=</span><span class="n">flight_data</span><span class="p">[</span><span class="s1">&#39;flight_number&#39;</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+    <span class="k">return</span> <span class="n">flights1</span></div>
+
+
+
+<div class="viewcode-block" id="write_csv">
+<a class="viewcode-back" href="../Flight.html#Flight.write_csv">[docs]</a>
+<span class="k">def</span> <span class="nf">write_csv</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Flight</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write csv file with Flights named &quot;{Name}.csv</span>
+
+<span class="sd">    :param name: Name of sort or file</span>
+<span class="sd">    :param rows: Rows to write</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+        <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;flight_number&#39;</span><span class="p">,</span> <span class="s1">&#39;airline&#39;</span><span class="p">,</span> <span class="s1">&#39;passengers&#39;</span><span class="p">,</span> <span class="s1">&#39;arrival_date&#39;</span><span class="p">,</span>
+                                                          <span class="s1">&#39;arrival_time&#39;</span><span class="p">])</span>
+        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+        <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;flight_number&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">flight_number</span><span class="p">,</span>
+                           <span class="s1">&#39;airline&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">airline</span><span class="p">,</span>
+                           <span class="s1">&#39;passengers&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">passengers</span><span class="p">,</span>
+                           <span class="s1">&#39;arrival_date&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">arrival_date</span><span class="p">,</span>
+                           <span class="s1">&#39;arrival_time&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">arrival_time</span><span class="p">},</span>
+                <span class="n">rows</span>
+                <span class="p">)</span>
+        <span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">sorts</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, ddif.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

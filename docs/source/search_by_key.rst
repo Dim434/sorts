@@ -1,7 +1,7 @@
-main module
+search_by_key module
 ===========
 
-.. automodule:: main
+.. automodule:: search_by_key
    :members:
    :undoc-members:
    :show-inheritance:

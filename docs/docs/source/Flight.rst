@@ -1,7 +1,7 @@
-sorts module
+Flight module
 ===========
 
-.. automodule:: sorts
+.. automodule:: Flight
    :members:
    :undoc-members:
    :show-inheritance:

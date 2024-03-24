@@ -1,7 +1,7 @@
-sorts module
+TreeNode module
 ===========
 
-.. automodule:: sorts
+.. automodule:: TreeNode
    :members:
    :undoc-members:
    :show-inheritance:
